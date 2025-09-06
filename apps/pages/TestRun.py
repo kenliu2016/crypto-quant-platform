@@ -22,8 +22,13 @@ from sqlalchemy import text
 
 # ========= 导入项目模块 =========
 from core.backtester import Backtester
-from data_io.db import Session
+from core.db import get_engine
 from data_io.schemas import Run, Metrics, EquityCurve
+from sqlalchemy.orm import sessionmaker
+
+# 创建session
+engine = get_engine()
+Session = sessionmaker(bind=engine)
 
 
 # ============ 工具函数 ============

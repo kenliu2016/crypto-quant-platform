@@ -30,8 +30,13 @@ ROOT_DIR = os.path.dirname(CURRENT_DIR)
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
-from data_io.db import Session
+from core.db import get_engine
 from data_io.schemas import Run, Metrics, EquityCurve
+from sqlalchemy.orm import sessionmaker
+
+# 创建session
+engine = get_engine()
+Session = sessionmaker(bind=engine)
 
 
 def load_strategy_from_db(name: str, session):

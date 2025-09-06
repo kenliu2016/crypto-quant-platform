@@ -1,7 +1,12 @@
 import uuid, json, yaml  # 引入依赖库
 from core.backtester import Backtester  # 引入依赖库
-from data_io.db import Session  # 引入依赖库
+from core.db import get_engine  # 引入依赖库
 from data_io.schemas import Run, Metrics, Reports, EquityCurve  # 引入依赖库
+from sqlalchemy.orm import sessionmaker  # 引入依赖库
+
+# 创建session
+engine = get_engine()
+Session = sessionmaker(bind=engine)
 
 # 定义函数 run_backtest，实现具体功能逻辑
 def run_backtest(config: dict) -> str:
