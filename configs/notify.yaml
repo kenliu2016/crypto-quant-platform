@@ -1,0 +1,13 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+type: "none"   # none | email | slack | dingtalk
+email: ""
+smtp_host: "smtp.gmail.com"
+smtp_port: 465
+smtp_user: ""
+smtp_pass: ""
+slack_webhook: ""
+dingtalk_webhook: ""

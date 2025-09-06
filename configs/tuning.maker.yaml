@@ -1,0 +1,12 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+strategy_module: strategies.simple_maker
+objective: sharpe
+params:
+  - {name: halflife_vol, type: int, low: 60, high: 1440}
+  - {name: inventory_cap, type: float, low: 0.02, high: 0.3}
+  - {name: kappa, type: float, low: 0.1, high: 5.0, log: true}
+trials: 120

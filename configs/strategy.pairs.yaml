@@ -1,0 +1,23 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+strategy_id: PairsCI
+strategy_module: strategies.pairs_cointegration
+params:
+  pair_a: BTCUSDT
+  pair_b: ETHUSDT
+  lookback: 2880
+  z_entry: 2.0
+  z_exit: 0.5
+universe: [BTCUSDT, ETHUSDT]
+costs:
+  fee_bps: 2.0
+  slippage_bps: 1.0
+backtest:
+  start: 2023-01-01
+  end: 2025-09-05
+  bar: 1m
+account:
+  initial_cash: 100000

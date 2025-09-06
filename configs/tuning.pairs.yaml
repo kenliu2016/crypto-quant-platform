@@ -1,0 +1,12 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+strategy_module: strategies.pairs_cointegration
+objective: sharpe
+params:
+  - {name: lookback, type: int, low: 720, high: 10080}
+  - {name: z_entry, type: float, low: 1.0, high: 3.0}
+  - {name: z_exit, type: float, low: 0.1, high: 1.5}
+trials: 120

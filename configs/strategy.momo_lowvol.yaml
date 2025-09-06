@@ -1,0 +1,23 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+strategy_id: MomoLowVol
+strategy_module: strategies.momo_lowvol
+params:
+  momo_lb: 1440
+  vol_hl: 240
+  long_n: 2
+  short_n: 0
+  combo_alpha: 0.6
+universe: [BTCUSDT, ETHUSDT, BNBUSDT, SOLUSDT, XRPUSDT]
+costs:
+  fee_bps: 2.0
+  slippage_bps: 1.5
+backtest:
+  start: 2023-01-01
+  end: 2025-09-05
+  bar: 1m
+account:
+  initial_cash: 100000

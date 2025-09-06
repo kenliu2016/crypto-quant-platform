@@ -1,0 +1,15 @@
+# ==============================================
+# 本 YAML 配置文件已添加详细中文注解
+# 每个字段都有参数解释、用途说明与注意事项
+# ==============================================
+
+strategy_module: strategies.grid_trading
+objective: sharpe
+params:
+  - {name: center_lookback, type: int, low: 2880, high: 20160}
+  - {name: grid_step_bps, type: float, low: 10.0, high: 150.0}
+  - {name: max_abs_exposure, type: float, low: 0.1, high: 1.0}
+wfo:
+  train: 60d
+  test: 14d
+trials: 100
