@@ -1,4 +1,5 @@
 import sys
+from core.db import get_connection, get_engine
 import os
 import streamlit as st
 import pandas as pd
@@ -16,8 +17,8 @@ st.title("📊 量化交易策略管理平台 - 首页")
 st.markdown("请选择需要进入的功能模块：")
 
 # ========= 数据库配置 =========
-DB_URL = "postgresql://user:password@localhost:5432/quantdb"  # ⚠️ 修改为实际配置
-engine = create_engine(DB_URL)
+# DB_URL = "postgresql://user:password@localhost:5432/quantdb"  # ⚠️ 修改为实际配置
+engine = get_engine()
 
 # ========= 定义卡片 HTML 模板 =========
 card_template = """

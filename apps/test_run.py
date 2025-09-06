@@ -5,6 +5,7 @@
 """
 
 import argparse
+from core.db import get_connection, get_engine
 import uuid
 import datetime
 import pandas as pd
@@ -64,7 +65,7 @@ def main():
     run_id = str(uuid.uuid4())
 
     # 连接数据库
-    engine = create_engine("postgresql://postgres:postgres@localhost:5432/quant")
+    engine = get_engine()
     session = Session()
 
     # 加载策略配置

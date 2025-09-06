@@ -1,15 +1,14 @@
 import sys
 import os
-import streamlit as st
-import pandas as pd
-from sqlalchemy import create_engine, text
-
 # ========= 自动加入项目根目录到 sys.path =========
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
-
+import streamlit as st
+import pandas as pd
+from sqlalchemy import create_engine, text
+from core.db import get_connection, get_engine
 # ========= 页面配置 =========
 st.set_page_config(page_title="量化交易平台", layout="wide")
 st.title("📊 量化交易策略管理平台 - 首页")
@@ -17,8 +16,8 @@ st.markdown("请选择需要进入的功能模块：")
 
 # ========= 定义数据库连接 =========
 # ⚠️ 修改为你实际的 Postgres 配置
-DB_URL = "postgresql://user:password@localhost:5432/quantdb"
-engine = create_engine(DB_URL)
+# DB_URL = "postgresql://user:password@localhost:5432/quantdb"
+engine = get_engine()
 
 # ========= 定义卡片 HTML 模板 =========
 card_template = """

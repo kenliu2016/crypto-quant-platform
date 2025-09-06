@@ -19,12 +19,12 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer, Table
 from sqlalchemy import create_engine, text
-
+from core.db import get_connection, get_engine
 # =========================
 # 🔧 数据库连接（请修改）
 # =========================
 DB_URL = "postgresql://postgres:yourpassword@localhost:5432/quant"
-engine = create_engine(DB_URL, pool_pre_ping=True)
+engine = get_engine()
 
 # =========================
 # ⚙️ 页面设置

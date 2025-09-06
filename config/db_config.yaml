@@ -1,0 +1,7 @@
+# 统一数据库配置文件（建议生产用环境变量覆盖）
+postgres:
+  host: "localhost"       # 主机
+  port: 5432              # 端口
+  dbname: "quant"         # 数据库名（也可用 database 字段）
+  user: "cfs"             # 用户
+  password: "Aa520@cfs"   # 密码
