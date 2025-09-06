@@ -1,16 +1,14 @@
 import sys
-from core.db import get_connection, get_engine
 import os
-
 # ========= 自动加入项目根目录到 sys.path =========
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # apps/pages/
 ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))      # crypto-quant-platform/
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
-
+from core.db import get_connection, get_engine
 import streamlit as st, pandas as pd, sqlalchemy as sa, json  # 引入依赖库
 from streamlit_autorefresh import st_autorefresh  # 引入依赖库
-engine = sa.get_engine())  # 变量赋值
+engine = get_engine()  # 变量赋值
 st.title("⏱ 回测任务进度")  # 函数调用
 st_autorefresh(interval=30*1000, key="refresh")  # 变量赋值
 

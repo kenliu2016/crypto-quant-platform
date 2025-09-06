@@ -15,11 +15,11 @@ pip install -r requirements.txt
 
 # === 2. 初始化数据库 ===
 echo ">>> 初始化数据库 schema"
-psql -U aaronkliu -h localhost -c "CREATE DATABASE quant;" || echo "数据库 quant 已存在"
+psql -U cfs -h localhost -c "CREATE DATABASE quant;" || echo "数据库 quant 已存在"
 
-psql -U aaronkliu -h localhost -d quant -f db/schema.sql
-psql -U aaronkliu -h localhost -d quant -f db/init_strategies.sql
+psql -U cfs -h localhost -d quant -f db/schema.sql
+psql -U cfs -h localhost -d quant -f db/init_strategies.sql
 
 # === 3. 启动 Streamlit 仪表盘 ===
 echo ">>> 启动 Streamlit 仪表盘 (http://localhost:8501)"
-streamlit run apps/dashboard/Home.py
+streamlit run apps/pages/Home.py

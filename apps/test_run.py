@@ -3,27 +3,35 @@
 运行方式:
     python apps/test_run.py --strategy ts_momentum --codes BTCUSDT ETHUSDT --start 2024-01-01 --end 2024-01-15
 """
-
+import sys
+import os
+# ========= 自动加入项目根目录到 sys.path =========
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # apps/
+ROOT_DIR = os.path.dirname(CURRENT_DIR)                       # crypto-quant-platform/
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
 import argparse
 from core.db import get_connection, get_engine
 import uuid
 import datetime
 import pandas as pd
 import numpy as np
-import sys
-import os
 from sqlalchemy import create_engine, text
 
-# ========= 自动加入项目根目录到 sys.path =========
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # apps/
-ROOT_DIR = os.path.dirname(CURRENT_DIR)                       # crypto-quant-platform/
-if ROOT_DIR not in sys.path:
-    sys.path.append(ROOT_DIR)
 
 # ========= 导入项目模块 =========
 from core.backtester import Backtester
-from io.db import Session
-from io.schemas import Run, Metrics, EquityCurve
+import sys
+import os
+
+# 确保项目根目录在sys.path中
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
+
+from data_io.db import Session
+from data_io.schemas import Run, Metrics, EquityCurve
 
 
 def load_strategy_from_db(name: str, session):
@@ -45,7 +53,7 @@ def generate_dummy_data(codes, start, end):
             "datetime": idx,
             "code": code,
             "open": price,
-            "hight": price * (1 + 0.001),  # 注意拼写 hight
+            "high": price * (1 + 0.001),
             "low": price * (1 - 0.001),
             "close": price,
             "volume": np.random.randint(100, 1000, size=len(idx))

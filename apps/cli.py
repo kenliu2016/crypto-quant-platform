@@ -1,7 +1,7 @@
 import uuid, json, yaml  # 引入依赖库
 from core.backtester import Backtester  # 引入依赖库
-from io.db import Session  # 引入依赖库
-from io.schemas import Run, Metrics, Reports, EquityCurve  # 引入依赖库
+from data_io.db import Session  # 引入依赖库
+from data_io.schemas import Run, Metrics, Reports, EquityCurve  # 引入依赖库
 
 # 定义函数 run_backtest，实现具体功能逻辑
 def run_backtest(config: dict) -> str:

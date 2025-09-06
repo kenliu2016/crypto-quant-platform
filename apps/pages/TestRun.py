@@ -6,26 +6,24 @@ Streamlit 页面: 一键运行测试回测
 3. 运行快速回测（假数据或历史K线）
 4. 展示净值曲线、回撤、夏普率等指标
 """
-
-import streamlit as st
-import pandas as pd
-import numpy as np
-import datetime
-import uuid
 import sys
 import os
-from sqlalchemy import text
-
 # ========= 自动加入项目根目录到 sys.path =========
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # apps/pages/
 ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))      # crypto-quant-platform/
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
+import streamlit as st
+import pandas as pd
+import numpy as np
+import datetime
+import uuid
+from sqlalchemy import text
 
 # ========= 导入项目模块 =========
 from core.backtester import Backtester
-from io.db import Session
-from io.schemas import Run, Metrics, EquityCurve
+from data_io.db import Session
+from data_io.schemas import Run, Metrics, EquityCurve
 
 
 # ============ 工具函数 ============

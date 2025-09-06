@@ -11,7 +11,7 @@ from datetime import datetime  # 引入依赖库
 from apps.cli import run_backtest  # 引入依赖库
 from core.db import get_connection, get_engine
 
-engine = sa.get_engine() # 变量赋值
+engine = get_engine() # 变量赋值
 
 st.title("🧪 Backtest / 自动落库 & 对比 & 复现")  # 函数调用
 

@@ -1,15 +1,15 @@
-import sys
-from core.db import get_connection, get_engine
-import os
+import sys, os
+
+# === 自动加入项目根目录到 sys.path ===
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(CURRENT_DIR)   # 这里改成只上一级
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
+
 import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine, text
-
-# ========= 自动加入项目根目录到 sys.path =========
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))
-if ROOT_DIR not in sys.path:
-    sys.path.append(ROOT_DIR)
+from core.db import get_connection, get_engine
 
 # ========= 页面配置 =========
 st.set_page_config(page_title="量化交易平台", layout="wide")
