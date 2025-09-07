@@ -1,7 +1,19 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
+*.pyi
+*.pyc
+
+# Type checking cache
+.mypy_cache/
+.dmypy/
+
+# Poetry environment
+poetry.lock
+
+# Pipenv environment
+Pipfile.lock
 
 # C extensions
 *.so
@@ -77,3 +89,93 @@ examples/
 # Configuration files with sensitive information
 config/db_config.yaml
 configs/datasource*.yaml
+configs/notify.yaml
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# VSCode workspace settings
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# macOS specific files
+.AppleDouble
+.LSOverride
+
+# Windows specific files
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux specific files
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Temporary files directory
+tmp/
+temp/
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+out
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*

@@ -1,27 +1,34 @@
-import uuid, json, yaml  # 引入依赖库
-from core.backtester import Backtester  # 引入依赖库
-from core.db import get_engine  # 引入依赖库
-from data_io.schemas import Run, Metrics, Reports, EquityCurve  # 引入依赖库
-from sqlalchemy.orm import sessionmaker  # 引入依赖库
+import os
+import sys
+# ===== 确保能导入 core/ =====
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))  # apps/
+ROOT_DIR = os.path.dirname(CURRENT_DIR)                   # crypto-quant-platform/
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
 
-# 创建session
-engine = get_engine()
-Session = sessionmaker(bind=engine)
+import streamlit as st
 
-# 定义函数 run_backtest，实现具体功能逻辑
-def run_backtest(config: dict) -> str:
-    run_id = str(uuid.uuid4())  # 变量赋值
-    bt = Backtester(config)  # 变量赋值
-    result = bt.run()  # 变量赋值
+# 定义页面映射
+PAGES = {
+    "🏠 首页 / 仪表盘": "apps/views/Dashboard.py",
+    "📈 策略回测": "apps/views/Backtest.py",
+    "🧪 测试运行": "apps/views/TestRun.py",
+    "⚙️ 批量生成器": "apps/views/BatchGenerator.py",
+    "🔔 通知中心": "apps/views/Notify.py",
+    "📊 进度监控": "apps/views/Progress.py",
+    "📑 报告中心": "apps/views/Reports.py",
+    "🛠️ 参数调优": "apps/views/Tuning.py",
+}
 
-    with Session() as s:
-        s.add(Run(run_id=run_id, run_type="backtest", strategy_id=config.get("strategy_id",0),  # 变量赋值
-                  config=config, code_version="v1", status="done"))  # 变量赋值
-        for k, v in result.metrics.items():  # 循环遍历
-            s.add(Metrics(run_id=run_id, metric_name=k, metric_value=float(v)))  # 变量赋值
-        eq = result.equity_df.reset_index()  # 变量赋值
-        for r in eq.itertuples(index=False):  # 变量赋值
-            s.add(EquityCurve(run_id=run_id, datetime=r.datetime, nav=float(r.nav), drawdown=float(getattr(r, "drawdown", 0.0))))  # 变量赋值
-        s.add(Reports(run_id=run_id, report_path="#", artifact_paths={}))
-        s.commit()  # 函数调用
-    return run_id  # 返回结果
+# 侧边栏导航
+st.sidebar.title("📊 量化策略系统")
+choice = st.sidebar.radio("导航", list(PAGES.keys()))
+
+# 加载并执行页面代码
+page_file = PAGES[choice]
+if os.path.exists(page_file):
+    with open(page_file, "r", encoding="utf-8") as f:
+        code = f.read()
+    exec(code, globals())
+else:
+    st.error(f"未找到页面文件: {page_file}")

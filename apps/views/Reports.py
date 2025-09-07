@@ -1,9 +1,9 @@
-# apps/pages/Reports.py
+# apps/pages/🔮 行情预测.py
 # -*- coding: utf-8 -*-
 """
-回测报告中心（Reports）
+回测报告中心（🔮 行情预测）
 - 批量对比多个 run 的净值曲线（overlay）
-- 单个 run 详情：指标、净值/回撤、交易明细（带筛选与统计）
+- 单个 run 详情：Metrics、净值/回撤、交易明细（带筛选与统计）
 - 导出 PDF / Excel 报告
 - 可选自动刷新
 """
@@ -46,7 +46,7 @@ with st.sidebar:
 # =========================
 with engine.begin() as conn:
     runs = pd.read_sql(
-        text("SELECT run_id, strategy_id, run_type, started_at, ended_at, status FROM run ORDER BY started_at DESC"),
+        text("SELECT run_id::text AS run_id, strategy_id, run_type, started_at, ended_at, status FROM run ORDER BY started_at DESC"),
         conn,
     )
 
@@ -150,7 +150,7 @@ with engine.begin() as conn:
         trades["pnl"] = 0.0  # 没有 pnl 列时填充 0，避免后续统计报错
 
 # —— 指标表
-st.markdown("### 📑 指标")
+st.markdown("### 📑 Metrics")
 if metrics.empty:
     st.info("该回测暂无指标数据。")
 else:
@@ -322,7 +322,7 @@ with col_xls:
         buffer = BytesIO()
         with pd.ExcelWriter(buffer, engine="xlsxwriter") as writer:
             if not metrics.empty:
-                metrics.to_excel(writer, sheet_name="指标", index=False)
+                metrics.to_excel(writer, sheet_name="Metrics", index=False)
             if not equity.empty:
                 equity.to_excel(writer, sheet_name="净值曲线", index=False)
             if not trades.empty:

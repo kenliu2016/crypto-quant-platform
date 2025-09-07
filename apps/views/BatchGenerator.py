@@ -1,14 +1,14 @@
-import sys
+import streamlit as st
+st.title("⚙️ 批量生成器")
 import os
-
+import sys
 # ========= 自动加入项目根目录到 sys.path =========
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # apps/pages/
 ROOT_DIR = os.path.dirname(os.path.dirname(CURRENT_DIR))      # crypto-quant-platform/
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
-import streamlit as st, pandas as pd, itertools  # 引入依赖库
-from apps.cli import run_backtest  # 引入依赖库
+import pandas as pd, itertools  # 引入依赖库
 
 st.title("🧩 通用批量回测任务生成器")  # 函数调用
 strategy = st.text_input("策略名", "TSMA")  # 变量赋值
