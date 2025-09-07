@@ -12,3 +12,6 @@ openpyxl
 optuna
 pyyaml
 requests
+python-binance>=1.0.17
+websocket-client>=1.7.0
+python-dateutil

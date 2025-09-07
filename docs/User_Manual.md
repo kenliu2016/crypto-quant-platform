@@ -20,3 +20,28 @@
 ## 故障排查
 - 查看 `run` 表的 `status/notes`
 - 检查 Webhook server 日志与 API_SECRET
+
+
+
+# binance 数据适配器
+
+# 只拉取历史数据
+python -m apps.cli_ingest --rest-only
+
+# 只启动实时订阅
+python -m apps.cli_ingest --ws-only
+
+# 先拉历史再接实时
+python -m apps.cli_ingest
+
+
+
+# Binance 数据适配器用法示例
+1. 批量并发拉取多个交易对
+python -m apps.cli_ingest_binance --symbols BTCUSDT,ETHUSDT,BNBUSDT --interval 1m --start 2023-01-01 --end 2025-09-06 --force --workers 3
+
+这里 --workers 3 表示同时开 3 个线程，分别拉不同交易对。
+
+2. 单币对（默认 1 个线程）
+python -m apps.cli_ingest_binance --symbols BTCUSDT --interval 5m --start 2023-01-01 --end 2023-01-10 --force
+

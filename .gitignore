@@ -73,3 +73,7 @@ examples/
 *.swp
 *.swo
 *~
+
+# Configuration files with sensitive information
+config/db_config.yaml
+configs/datasource*.yaml
